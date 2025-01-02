@@ -1,5 +1,5 @@
 <?php
-
+// echo "1";
 session_start();
 
 class DB{
@@ -163,13 +163,16 @@ function to($url){
 
 $Total=new DB('total');
 $User=new DB('users');
-
+//echo "a";
 if(!isset($_SESSION['view'])){
+    echo "b";
     if($Total->count(['date'=>date("Y-m-d")])>0){
+        echo "1";
         $total=$Total->find(['date'=>date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     }else{
+        echo "2";
         $Total->save(['date'=>date("Y-m-d"),'total'=>1]);
     }
     $_SESSION['view']=1;
