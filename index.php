@@ -1,4 +1,4 @@
-﻿<?php include_once "api/db.php"?>
+﻿<?php include_once "api/db.php" ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
@@ -21,9 +21,9 @@
     <iframe name="back" style="display:none;"></iframe>
     <div id="all">
         <div id="title">
-            <?=date("m 月 d 號 l");?> |
-            今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total']??1;?> |
-            累積瀏覽: <?=$Total->sum('total')??1;?>
+            <?= date("m 月 d 號 l"); ?> |
+            今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total'] ?? 1; ?> |
+            累積瀏覽: <?= $Total->sum('total') ?? 1; ?>
             <a href="index.php" style="float:right">回首頁</a>
         </div>
         <div id="title2">
@@ -49,25 +49,25 @@
                         </marquee>
                     </div>
                     <span style="width:23%; display:inline-block;">
-                        <?php if(!isset($_SESSION['login'])):?>
+                        <?php if (!isset($_SESSION['user'])): ?>
                         <a href="index.php?do=login">會員登入</a>
-                        <?php else:?>
-                        歡迎,<?=$_SESSION['user'];?><br>
+                        <?php else: ?>
+                        歡迎,<?= $_SESSION['user']; ?><br>
                         <button onclick="location.href='admin.php'">管理</button>|
                         <button onclick="logout()">登出</button>
-                        <?php endif;?>
+                        <?php endif; ?>
                     </span>
                 </div>
                 <?php
-				$do=$_GET['do']??'main';
-				$file="front/".$do.".php";
-				if(file_exists($file)){
-					include $file;
-				}else{
-					include "front/main.php";
-				}
+                $do = $_GET['do'] ?? 'main';
+                $file = "front/" . $do . ".php";
+                if (file_exists($file)) {
+                    include $file;
+                } else {
+                    include "front/main.php";
+                }
 
-				?>
+                ?>
             </div>
         </div>
         <div id="bottom">
