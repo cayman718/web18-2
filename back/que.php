@@ -7,6 +7,17 @@
                 <input type="text" name="subject" id="subject" style="width:80%">
             </td>
         </tr>
+        <tr>
+            <td class='clo'>類型</td>
+            <td>
+                <select name="type" id="type">
+                    <option value="1">健康新知</option>
+                    <option value="2">菸害防治</option>
+                    <option value="3">癌症防治</option>
+                    <option value="4">慢性病防治</option>
+                </select>
+            </td>
+        </tr>
         <tr class='clo'>
             <td colspan='2'>
                 <div id="options">
@@ -30,14 +41,14 @@ function more() {
 
 function send() {
     let subject = $("#subject").val()
+    let type = $("#type").val()
     let options = $("input[name='option[]']").map((id, item) => $(item).val()).get()
-    // console.log(subject, options)
 
     $.post("./api/add_que.php", {
         subject,
+        type,
         options
     }, (res) => {
-        // console.log(res)
         location.reload()
     })
 }

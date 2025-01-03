@@ -1,5 +1,5 @@
 <?php
-// echo "1";
+
 session_start();
 
 class DB
@@ -7,7 +7,12 @@ class DB
     protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db18-2";
     protected $pdo;
     protected $table;
-
+    public static  $type = [
+        1 => '健康新知',
+        2 => '菸害防治',
+        3 => '癌症防治',
+        4 => '慢性病防治'
+    ];
     function __construct($table)
     {
         $this->table = $table;
@@ -180,16 +185,15 @@ $Total = new DB('total');
 $User = new DB('users');
 $News = new DB('news');
 $Que = new DB('que');
-//echo "a";
+$Log = new DB('log');
+
+
 if (!isset($_SESSION['view'])) {
-    echo "b";
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
-        echo "1";
         $total = $Total->find(['date' => date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     } else {
-        echo "2";
         $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
     }
     $_SESSION['view'] = 1;
